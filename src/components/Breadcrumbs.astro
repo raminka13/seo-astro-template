@@ -1,0 +1,44 @@
+---
+export interface Breadcrumb {
+  label: string;
+  url: string;
+}
+
+export interface Props {
+  crumbs: Breadcrumb[];
+}
+
+const { crumbs } = Astro.props;
+
+// Generate Schema.org BreadcrumbList
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": crumbs.map((crumb, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": crumb.label,
+    "item": new URL(crumb.url, Astro.site || Astro.url).href
+  }))
+});
+---
+
+<nav aria-label="Breadcrumb" class="py-4 w-full">
+  <ol class="flex items-center space-x-2 text-sm text-secondary-600 container mx-auto px-4 sm:px-6 lg:px-8">
+    {crumbs.map((crumb, index) => (
+      <li class="flex items-center">
+        {index > 0 && <span class="mx-2 text-secondary-400">/</span>}
+        {index === crumbs.length - 1 ? (
+          <span class="font-medium text-secondary-900" aria-current="page">
+            {crumb.label}
+          </span>
+        ) : (
+          <a href={crumb.url} class="hover:text-primary-600 transition-colors">
+            {crumb.label}
+          </a>
+        )}
+      </li>
+    ))}
+  </ol>
+  <script type="application/ld+json" set:html={schema} />
+</nav>

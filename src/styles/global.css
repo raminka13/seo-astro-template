@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+/* 
+  Custom Theme Configuration for Tailwind CSS v4 
+*/
+@theme extend {
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  /* Base Primary - Blue */
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+  --color-primary-950: #172554;
+
+  --color-secondary-50: #f8fafc;
+  --color-secondary-100: #f1f5f9;
+  --color-secondary-200: #e2e8f0;
+  --color-secondary-300: #cbd5e1;
+  --color-secondary-400: #94a3b8;
+  --color-secondary-500: #64748b;
+  /* Base Secondary - Slate */
+  --color-secondary-600: #475569;
+  --color-secondary-700: #334155;
+  --color-secondary-800: #1e293b;
+  --color-secondary-900: #0f172a;
+  --color-secondary-950: #020617;
+
+  --color-accent-50: #fdf4ff;
+  --color-accent-100: #fae8ff;
+  --color-accent-200: #f5d0fe;
+  --color-accent-300: #f0abfc;
+  --color-accent-400: #e879f9;
+  --color-accent-500: #d946ef;
+  /* Base Accent - Fuchsia */
+  --color-accent-600: #c026d3;
+  --color-accent-700: #a21caf;
+  --color-accent-800: #86198f;
+  --color-accent-900: #701a75;
+  --color-accent-950: #4a044e;
+
+  --font-title: 'Outfit', sans-serif;
+  --font-content: 'Inter', sans-serif;
+}
+
+@layer utilities {
+  .text-shadow-sm {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-dark {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  /* Scoped minimalist prose styles for Markdown content */
+  .prose {
+    @apply text-secondary-700 leading-relaxed max-w-none;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    @apply font-title font-bold text-secondary-900 mt-12 mb-6;
+  }
+
+  .prose h2 {
+    @apply text-3xl;
+  }
+
+  .prose h3 {
+    @apply text-2xl;
+  }
+
+  .prose p {
+    @apply mb-6;
+  }
+
+  .prose a {
+    @apply text-primary-600 font-semibold hover:text-primary-700 underline underline-offset-4 decoration-primary-300 hover:decoration-primary-600 transition-colors;
+  }
+
+  .prose ul {
+    @apply list-disc list-outside pl-6 mb-6 space-y-2;
+  }
+
+  .prose ol {
+    @apply list-decimal list-outside pl-6 mb-6 space-y-2;
+  }
+
+  .prose blockquote {
+    @apply border-l-4 border-primary-500 pl-6 italic text-secondary-800 bg-secondary-50 py-2 pr-4 rounded-r-lg my-8;
+  }
+
+  .prose code {
+    @apply bg-secondary-100 text-secondary-800 px-1.5 py-0.5 rounded text-sm font-mono border border-secondary-200;
+  }
+
+  .prose pre {
+    @apply bg-secondary-900 text-secondary-100 p-6 rounded-2xl overflow-x-auto my-8 border border-secondary-800 shadow-xl;
+  }
+
+  .prose pre code {
+    @apply bg-transparent text-inherit p-0 rounded-none border-none text-sm;
+  }
+
+  .prose img {
+    @apply rounded-2xl shadow-lg my-8 w-full object-cover max-h-[500px];
+  }
+
+  .prose hr {
+    @apply my-12 border-secondary-200;
+  }
+
+  .prose strong {
+    @apply font-bold text-secondary-900;
+  }
+}

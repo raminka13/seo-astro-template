@@ -1,0 +1,44 @@
+---
+export interface FAQ {
+  question: string;
+  answer: string;
+}
+
+export interface Props {
+  faqs: FAQ[];
+}
+
+const { faqs } = Astro.props;
+
+// Generate Schema.org FAQPage
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+});
+---
+
+<div class="space-y-4 my-8 w-full max-w-3xl mx-auto">
+  <h2 class="text-3xl font-title font-bold text-center text-secondary-900 mb-8">Frequently Asked Questions</h2>
+  {faqs.map((faq, index) => (
+    <details class="group border border-secondary-200 rounded-lg bg-white overflow-hidden shadow-sm" name="faq">
+      <summary class="flex justify-between items-center font-title font-medium cursor-pointer list-none p-4 hover:bg-secondary-50 transition-colors">
+        <span class="text-secondary-900">{faq.question}</span>
+        <span class="transition group-open:rotate-180 text-primary-500">
+          <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+        </span>
+      </summary>
+      <div class="text-secondary-600 p-4 pt-0">
+        <p>{faq.answer}</p>
+      </div>
+    </details>
+  ))}
+  <script type="application/ld+json" set:html={schema} />
+</div>

@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { SITE_TITLE } from '../consts';
+
+const crumbs = [
+  { label: 'Home', url: '/' },
+  { label: 'About Us', url: '/about-us' },
+];
+---
+
+<BaseLayout
+  title={`About Us | ${SITE_TITLE}`}
+  description="Learn more about our team and mission."
+  keywords="about us, mission, team"
+>
+  <Breadcrumbs crumbs={crumbs} />
+  <section
+    class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 max-w-4xl"
+  >
+    <div class="text-center mb-16">
+      <h1
+        class="text-4xl md:text-5xl font-title font-bold mb-6 text-secondary-900"
+      >
+        About Us
+      </h1>
+      <div class="w-20 h-1 bg-primary-500 mx-auto rounded-full"></div>
+    </div>
+    <div
+      class="prose max-w-none text-secondary-600 text-lg leading-relaxed space-y-6"
+    >
+      <p>
+        We are a team of passionate developers and designers dedicated to
+        creating the absolute best, highest-performing web templates in the
+        industry.
+      </p>
+      <p>
+        By blending modern technologies like Astro, React, and Tailwind CSS, we
+        craft foundations that empower businesses to scale their digital
+        presence while maintaining perfect Lighthouse scores and out-of-the-box
+        SEO.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

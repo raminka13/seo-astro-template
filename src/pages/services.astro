@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { SITE_TITLE } from '../consts';
+
+const crumbs = [
+  { label: 'Home', url: '/' },
+  { label: 'Services', url: '/services' },
+];
+
+const services = [
+  {
+    title: 'SEO Optimization',
+    desc: 'Rank higher with perfectly structured HTML and Schema.org generation.',
+  },
+  {
+    title: 'Performance Tuning',
+    desc: 'Score 100 on Lighthouse with zero-JS by default Island Architecture.',
+  },
+  {
+    title: 'Web Design',
+    desc: 'Beautiful, pixel-perfect Tailwind CSS v4 interfaces with glassmorphism.',
+  },
+  {
+    title: 'Conversion Rate Optimization',
+    desc: 'A/B tested layouts designed specifically to turn your visitors into customers.',
+  },
+  {
+    title: 'React Integration',
+    desc: 'Use the power of React components perfectly merged into a static Astro shell.',
+  },
+  {
+    title: 'Analytics Customization',
+    desc: 'Deep integrations with CRM APIs and detailed tracking setups.',
+  },
+];
+---
+
+<BaseLayout
+  title={`Our Services | ${SITE_TITLE}`}
+  description="Explore our premium web services and solutions."
+  keywords="services, web design, seo, development"
+>
+  <Breadcrumbs crumbs={crumbs} />
+  <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+    <div class="text-center mb-16">
+      <h1
+        class="text-4xl md:text-5xl font-title font-bold mb-6 text-secondary-900"
+      >
+        Our Services
+      </h1>
+      <div class="w-20 h-1 bg-primary-500 mx-auto rounded-full"></div>
+    </div>
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+    >
+      {
+        services.map((service) => (
+          <div class="group p-8 border border-secondary-200 rounded-2xl bg-white shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <div class="w-12 h-12 bg-primary-50 rounded-lg flex items-center justify-center text-primary-600 mb-6 group-hover:scale-110 transition-transform">
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
+              </svg>
+            </div>
+            <h2 class="text-2xl font-bold font-title mb-4 text-secondary-900 group-hover:text-primary-600 transition-colors">
+              {service.title}
+            </h2>
+            <p class="text-secondary-600 leading-relaxed">{service.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

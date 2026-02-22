@@ -1,0 +1,57 @@
+---
+export interface Testimonial {
+  name: string;
+  role: string;
+  content: string;
+  avatarUrl: string;
+}
+
+interface Props {
+  title: string;
+  subtitle: string;
+  testimonials: Testimonial[];
+}
+
+const { title, subtitle, testimonials } = Astro.props;
+---
+
+<section class="py-24 bg-secondary-50">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2
+        class="text-3xl md:text-4xl font-title font-bold text-secondary-900 mb-4"
+      >
+        {title}
+      </h2>
+      <p class="text-lg text-secondary-600">
+        {subtitle}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {
+        testimonials.map((testimonial) => (
+          <div class="bg-white p-8 rounded-3xl shadow-lg border border-secondary-100 flex flex-col hover:-translate-y-2 transition-transform duration-300">
+            <div class="flex items-center gap-4 mb-6">
+              <img
+                src={testimonial.avatarUrl}
+                alt={testimonial.name}
+                class="w-14 h-14 rounded-full object-cover border-2 border-primary-100"
+                loading="lazy"
+              />
+              <div>
+                <h4 class="font-title font-bold text-secondary-900">
+                  {testimonial.name}
+                </h4>
+                <p class="text-sm text-secondary-500">{testimonial.role}</p>
+              </div>
+            </div>
+            <p class="text-secondary-700 italic flex-grow leading-relaxed">
+              "{testimonial.content}"
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

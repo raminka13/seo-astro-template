@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import Stats from '../components/Stats.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CallToAction from '../components/CallToAction.astro';
+
+const statsData = [
+  { label: 'Active Users', value: '10', suffix: 'k+' },
+  { label: 'Lighthouse Score', value: '100', suffix: '/100' },
+  { label: 'Uptime', value: '99.9', suffix: '%' },
+  { label: 'Support SLA', value: '24', suffix: 'hrs' },
+];
+
+const testimonialsData = [
+  {
+    name: 'Sarah Chen',
+    role: 'CTO at TechFlow',
+    content:
+      'AstroSEO transformed our web presence. Our load times dropped by 70%, and our search rankings surged within a month of launching.',
+    avatarUrl:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80',
+  },
+  {
+    name: 'Marcus Rodriguez',
+    role: 'Head of Marketing',
+    content:
+      'The perfectly optimized HTML and JSON-LD schema integration meant we finally hit the featured snippets we were targeting.',
+    avatarUrl:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80',
+  },
+  {
+    name: 'Emily Watson',
+    role: 'Indie Hacker',
+    content:
+      'As a solo developer, the beautiful pre-built Tailwind v4 components saved me weeks of design work while keeping performance perfect.',
+    avatarUrl:
+      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80',
+  },
+];
+
+const featuresData = [
+  {
+    title: 'Lightning Fast',
+    description:
+      "Zero JavaScript by default. Astro's island architecture means your site loads instantly.",
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>',
+  },
+  {
+    title: 'SEO Optimized',
+    description:
+      'Built-in Schema.org JSON-LD generation, perfectly structured HTML, and optimal meta tags.',
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>',
+  },
+  {
+    title: 'Tailwind v4 Aesthetics',
+    description:
+      'Premium design system with glassmorphism, fluid typography, and dynamic gradients.',
+    icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>',
+  },
+];
+---
+
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <Hero
+    title="Build Faster."
+    highlightText="Rank Higher."
+    description="AstroSEO is the premium template engineered for perfect Lighthouse scores, unparalleled SEO, and stunning aesthetics."
+    primaryButtonText="Explore Services"
+    primaryButtonLink="/services"
+    secondaryButtonText="Contact Us"
+    secondaryButtonLink="/contact-us"
+  />
+
+  <!-- Features Section -->
+  <Features
+    title="Why Choose AstroSEO?"
+    subtitle="We've built the foundation so you can focus on building your business."
+    features={featuresData}
+  />
+
+  <Stats stats={statsData} />
+
+  <Testimonials
+    title="Trusted by Developers"
+    subtitle="See what our community has to say about AstroSEO."
+    testimonials={testimonialsData}
+  />
+
+  <CallToAction
+    title="Ready to Boost Your SEO?"
+    description="Get started with AstroSEO today and experience the difference perfect Lighthouse scores make."
+    buttonText="Start Building Now"
+    buttonLink="/contact-us"
+  />
+</BaseLayout>

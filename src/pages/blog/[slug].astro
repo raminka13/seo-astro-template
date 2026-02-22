@@ -1,0 +1,81 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { SITE_TITLE } from '../../consts';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map((entry: CollectionEntry<'blog'>) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+type Props = {
+  entry: CollectionEntry<'blog'>;
+};
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+const crumbs = [
+  { label: 'Home', url: '/' },
+  { label: 'Blog', url: '/blog' },
+  { label: entry.data.title, url: `/blog/${entry.slug}` },
+];
+---
+
+<BaseLayout
+  title={`${entry.data.title} | ${SITE_TITLE}`}
+  description={entry.data.description}
+>
+  <Breadcrumbs crumbs={crumbs} />
+  <article
+    class="container mx-auto px-4 sm:px-6 lg:px-12 py-16 md:py-24 max-w-3xl bg-white"
+  >
+    <header class="mb-12 text-center">
+      <div
+        class="inline-block bg-primary-100 text-primary-700 px-4 py-1 rounded-full text-sm font-semibold mb-6"
+      >
+        {entry.data.tags?.[0] || 'Article'}
+      </div>
+      <h1
+        class="text-4xl md:text-5xl lg:text-6xl font-title font-bold text-secondary-900 mb-6 leading-tight"
+      >
+        {entry.data.title}
+      </h1>
+      <div class="flex items-center justify-center gap-4 text-secondary-600">
+        <div class="flex items-center gap-2">
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+            ></path></svg
+          >
+          <span>{entry.data.author || 'AstroSEO Team'}</span>
+        </div>
+        <span>&bull;</span>
+        <time>
+          {
+            entry.data.date.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })
+          }
+        </time>
+      </div>
+    </header>
+
+    <div class="prose prose-lg sm:prose-xl mx-auto">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
