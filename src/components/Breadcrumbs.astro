@@ -24,16 +24,16 @@ const schema = JSON.stringify({
 ---
 
 <nav aria-label="Breadcrumb" class="py-4 w-full">
-  <ol class="flex items-center space-x-2 text-sm text-secondary-600 container mx-auto px-4 sm:px-6 lg:px-8">
+  <ol class="flex items-center space-x-2 text-sm text-secondary-600 dark:text-secondary-400 container mx-auto px-4 sm:px-6 lg:px-8">
     {crumbs.map((crumb, index) => (
       <li class="flex items-center">
-        {index > 0 && <span class="mx-2 text-secondary-400">/</span>}
+        {index > 0 && <span class="mx-2 text-secondary-400 dark:text-secondary-500">/</span>}
         {index === crumbs.length - 1 ? (
-          <span class="font-medium text-secondary-900" aria-current="page">
+          <span class="font-medium text-secondary-900 dark:text-secondary-100" aria-current="page">
             {crumb.label}
           </span>
         ) : (
-          <a href={crumb.url} class="hover:text-primary-600 transition-colors">
+          <a href={crumb.url} class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
             {crumb.label}
           </a>
         )}

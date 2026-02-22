@@ -49,20 +49,20 @@ const faqs = [
       <div>
         <div class="mb-12">
           <h1
-            class="text-4xl md:text-5xl font-title font-bold mb-6 text-secondary-900"
+            class="text-4xl md:text-5xl font-title font-bold mb-6 text-secondary-900 dark:text-secondary-100"
           >
             Let's Talk
           </h1>
-          <p class="text-secondary-600 text-lg leading-relaxed">
+          <p class="text-secondary-600 dark:text-secondary-400 text-lg leading-relaxed">
             Whether you have a question about our templates or want to discuss a
             full custom build, our team is ready to answer all your questions.
           </p>
         </div>
 
         <div
-          class="bg-primary-100 p-8 rounded-2xl border border-primary-200 mb-12"
+          class="bg-primary-100 dark:bg-primary-900/50 p-8 rounded-2xl border border-primary-200 dark:border-primary-800 mb-12"
         >
-          <h3 class="text-xl font-title font-bold text-primary-900 mb-4">
+          <h3 class="text-xl font-title font-bold text-primary-900 dark:text-primary-200 mb-4">
             Direct Communication
           </h3>
           <ul class="space-y-4">
@@ -108,7 +108,7 @@ const faqs = [
   </section>
 
   <!-- Full Width FAQs -->
-  <div class="mt-24 pt-16 border-t border-secondary-200">
+  <div class="mt-24 pt-16 border-t border-secondary-200 dark:border-secondary-700">
     <FAQs faqs={faqs} />
   </div>
 </BaseLayout>

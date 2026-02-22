@@ -32,20 +32,20 @@ const crumbs = [
 >
   <Breadcrumbs crumbs={crumbs} />
   <article
-    class="container mx-auto px-4 sm:px-6 lg:px-12 py-16 md:py-24 max-w-3xl bg-white"
+    class="container mx-auto px-4 sm:px-6 lg:px-12 py-16 md:py-24 max-w-3xl bg-white dark:bg-secondary-900"
   >
     <header class="mb-12 text-center">
       <div
-        class="inline-block bg-primary-100 text-primary-700 px-4 py-1 rounded-full text-sm font-semibold mb-6"
+        class="inline-block bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-400 px-4 py-1 rounded-full text-sm font-semibold mb-6"
       >
         {entry.data.tags?.[0] || 'Article'}
       </div>
       <h1
-        class="text-4xl md:text-5xl lg:text-6xl font-title font-bold text-secondary-900 mb-6 leading-tight"
+        class="text-4xl md:text-5xl lg:text-6xl font-title font-bold text-secondary-900 dark:text-secondary-100 mb-6 leading-tight"
       >
         {entry.data.title}
       </h1>
-      <div class="flex items-center justify-center gap-4 text-secondary-600">
+      <div class="flex items-center justify-center gap-4 text-secondary-600 dark:text-secondary-400">
         <div class="flex items-center gap-2">
           <svg
             class="w-5 h-5"

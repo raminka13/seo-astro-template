@@ -36,58 +36,58 @@ export default function ContactForm() {
     };
 
     return (
-        <div className="bg-white rounded-2xl shadow-xl border border-secondary-100 p-8 sm:p-10 w-full max-w-2xl transform hover:-translate-y-1 transition-all duration-300">
+        <div className="bg-white dark:bg-secondary-800 rounded-2xl shadow-xl border border-secondary-100 dark:border-secondary-700 p-8 sm:p-10 w-full max-w-2xl transform hover:-translate-y-1 transition-all duration-300">
             <div className="mb-8 text-center">
-                <h2 className="text-3xl font-title font-bold text-secondary-900">Get in Touch</h2>
-                <p className="mt-2 text-secondary-600">We'd love to hear from you. Fill out the form below.</p>
+                <h2 className="text-3xl font-title font-bold text-secondary-900 dark:text-secondary-100">Get in Touch</h2>
+                <p className="mt-2 text-secondary-600 dark:text-secondary-400">We'd love to hear from you. Fill out the form below.</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label htmlFor="firstName" className="block text-sm font-medium text-secondary-700">First Name</label>
+                        <label htmlFor="firstName" className="block text-sm font-medium text-secondary-700 dark:text-secondary-300">First Name</label>
                         <input
                             type="text"
                             id="firstName"
                             name="firstName"
                             required
-                            className="mt-2 block w-full rounded-lg border-secondary-200 px-4 py-3 bg-secondary-50 border outline-none focus:border-primary-500 focus:bg-white focus:ring-2 focus:ring-primary-200 transition-all"
+                            className="mt-2 block w-full rounded-lg border-secondary-200 dark:border-secondary-600 px-4 py-3 bg-secondary-50 dark:bg-secondary-700 border outline-none focus:border-primary-500 focus:bg-white dark:focus:bg-secondary-600 focus:ring-2 focus:ring-primary-200 dark:focus:ring-primary-800 transition-all dark:text-secondary-100 dark:placeholder-secondary-400"
                             placeholder="Jane"
                         />
                     </div>
                     <div>
-                        <label htmlFor="lastName" className="block text-sm font-medium text-secondary-700">Last Name</label>
+                        <label htmlFor="lastName" className="block text-sm font-medium text-secondary-700 dark:text-secondary-300">Last Name</label>
                         <input
                             type="text"
                             id="lastName"
                             name="lastName"
                             required
-                            className="mt-2 block w-full rounded-lg border-secondary-200 px-4 py-3 bg-secondary-50 border outline-none focus:border-primary-500 focus:bg-white focus:ring-2 focus:ring-primary-200 transition-all"
+                            className="mt-2 block w-full rounded-lg border-secondary-200 dark:border-secondary-600 px-4 py-3 bg-secondary-50 dark:bg-secondary-700 border outline-none focus:border-primary-500 focus:bg-white dark:focus:bg-secondary-600 focus:ring-2 focus:ring-primary-200 dark:focus:ring-primary-800 transition-all dark:text-secondary-100 dark:placeholder-secondary-400"
                             placeholder="Smith"
                         />
                     </div>
                 </div>
 
                 <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-secondary-700">Email Address</label>
+                    <label htmlFor="email" className="block text-sm font-medium text-secondary-700 dark:text-secondary-300">Email Address</label>
                     <input
                         type="email"
                         id="email"
                         name="email"
                         required
-                        className="mt-2 block w-full rounded-lg border-secondary-200 px-4 py-3 bg-secondary-50 border outline-none focus:border-primary-500 focus:bg-white focus:ring-2 focus:ring-primary-200 transition-all"
+                        className="mt-2 block w-full rounded-lg border-secondary-200 dark:border-secondary-600 px-4 py-3 bg-secondary-50 dark:bg-secondary-700 border outline-none focus:border-primary-500 focus:bg-white dark:focus:bg-secondary-600 focus:ring-2 focus:ring-primary-200 dark:focus:ring-primary-800 transition-all dark:text-secondary-100 dark:placeholder-secondary-400"
                         placeholder="jane@example.com"
                     />
                 </div>
 
                 <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-secondary-700">How can we help you?</label>
+                    <label htmlFor="message" className="block text-sm font-medium text-secondary-700 dark:text-secondary-300">How can we help you?</label>
                     <textarea
                         id="message"
                         name="message"
                         rows={5}
                         required
-                        className="mt-2 block w-full rounded-lg border-secondary-200 px-4 py-3 bg-secondary-50 border outline-none focus:border-primary-500 focus:bg-white focus:ring-2 focus:ring-primary-200 transition-all resize-none"
+                        className="mt-2 block w-full rounded-lg border-secondary-200 dark:border-secondary-600 px-4 py-3 bg-secondary-50 dark:bg-secondary-700 border outline-none focus:border-primary-500 focus:bg-white dark:focus:bg-secondary-600 focus:ring-2 focus:ring-primary-200 dark:focus:ring-primary-800 transition-all resize-none dark:text-secondary-100 dark:placeholder-secondary-400"
                         placeholder="Tell us about your project or inquiry..."
                     ></textarea>
                 </div>
@@ -103,13 +103,13 @@ export default function ContactForm() {
                 </div>
 
                 {status === 'success' && (
-                    <div className="p-4 rounded-lg bg-green-50 border border-green-100 text-green-800 text-sm text-center font-medium my-4">
+                    <div className="p-4 rounded-lg bg-green-50 dark:bg-green-900/30 border border-green-100 dark:border-green-800 text-green-800 dark:text-green-300 text-sm text-center font-medium my-4">
                         Thank you! Your message has been sent successfully.
                     </div>
                 )}
 
                 {status === 'error' && (
-                    <div className="p-4 rounded-lg bg-red-50 border border-red-100 text-red-800 text-sm text-center font-medium my-4">
+                    <div className="p-4 rounded-lg bg-red-50 dark:bg-red-900/30 border border-red-100 dark:border-red-800 text-red-800 dark:text-red-300 text-sm text-center font-medium my-4">
                         Oops! Something went wrong. Please try again later.
                     </div>
                 )}
