@@ -1,0 +1,96 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { SITE_TITLE } from '../../consts';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services');
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+interface Props {
+  service: CollectionEntry<'services'>;
+}
+
+const { service } = Astro.props;
+const { Content } = await service.render();
+
+const crumbs = [
+  { label: 'Home', url: '/' },
+  { label: 'Services', url: '/services' },
+  { label: service.data.title, url: '' },
+];
+---
+
+<BaseLayout
+  title={`${service.data.title} | ${SITE_TITLE}`}
+  description={service.data.description}
+>
+  <Breadcrumbs crumbs={crumbs} />
+
+  <article
+    class="container mx-auto px-4 sm:px-6 lg:px-12 py-16 md:py-24 max-w-4xl bg-white"
+  >
+    <header class="mb-16 text-center">
+      <div
+        class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary-50 text-primary-600 mb-8 shadow-sm border border-primary-100"
+      >
+        {
+          service.data.icon ? (
+            <svg
+              class="w-10 h-10"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              set:html={service.data.icon}
+            />
+          ) : (
+            <svg
+              class="w-10 h-10"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z"
+              />
+            </svg>
+          )
+        }
+      </div>
+      <h1
+        class="text-4xl md:text-6xl font-title font-extrabold text-secondary-900 mb-6 tracking-tight"
+      >
+        {service.data.title}
+      </h1>
+      <p
+        class="text-xl md:text-2xl text-secondary-500 max-w-2xl mx-auto font-light leading-relaxed"
+      >
+        {service.data.description}
+      </p>
+    </header>
+
+    <div
+      class="prose prose-lg md:prose-xl prose-primary mx-auto prose-headings:font-title prose-headings:font-bold prose-a:text-primary-600 hover:prose-a:text-primary-500 prose-img:rounded-2xl prose-img:shadow-xl"
+    >
+      <Content />
+    </div>
+
+    <div class="mt-20 pt-10 border-t border-secondary-100 text-center">
+      <a
+        href="/contact-us"
+        class="inline-block bg-primary-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-primary-500 transition-colors shadow-lg shadow-primary-500/30"
+      >
+        Discuss Your Project
+      </a>
+    </div>
+  </article>
+</BaseLayout>
