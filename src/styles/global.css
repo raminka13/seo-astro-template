@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* 
   Custom Theme Configuration for Tailwind CSS v4 
 */
@@ -77,7 +79,7 @@
 
   /* Scoped minimalist prose styles for Markdown content */
   .prose {
-    @apply text-secondary-700 leading-relaxed max-w-none;
+    @apply text-secondary-700 leading-relaxed max-w-none dark:text-secondary-300;
   }
 
   .prose h1,
@@ -86,7 +88,7 @@
   .prose h4,
   .prose h5,
   .prose h6 {
-    @apply font-title font-bold text-secondary-900 mt-12 mb-6;
+    @apply font-title font-bold text-secondary-900 mt-12 mb-6 dark:text-secondary-100;
   }
 
   .prose h2 {
@@ -102,7 +104,7 @@
   }
 
   .prose a {
-    @apply text-primary-600 font-semibold hover:text-primary-700 underline underline-offset-4 decoration-primary-300 hover:decoration-primary-600 transition-colors;
+    @apply text-primary-600 font-semibold hover:text-primary-700 underline underline-offset-4 decoration-primary-300 hover:decoration-primary-600 transition-colors dark:text-primary-400 dark:hover:text-primary-300 dark:decoration-primary-600 dark:hover:decoration-primary-400;
   }
 
   .prose ul {
@@ -114,11 +116,11 @@
   }
 
   .prose blockquote {
-    @apply border-l-4 border-primary-500 pl-6 italic text-secondary-800 bg-secondary-50 py-2 pr-4 rounded-r-lg my-8;
+    @apply border-l-4 border-primary-500 pl-6 italic text-secondary-800 bg-secondary-50 py-2 pr-4 rounded-r-lg my-8 dark:text-secondary-200 dark:bg-secondary-800;
   }
 
   .prose code {
-    @apply bg-secondary-100 text-secondary-800 px-1.5 py-0.5 rounded text-sm font-mono border border-secondary-200;
+    @apply bg-secondary-100 text-secondary-800 px-1.5 py-0.5 rounded text-sm font-mono border border-secondary-200 dark:bg-secondary-800 dark:text-secondary-200 dark:border-secondary-700;
   }
 
   .prose pre {
@@ -134,10 +136,10 @@
   }
 
   .prose hr {
-    @apply my-12 border-secondary-200;
+    @apply my-12 border-secondary-200 dark:border-secondary-700;
   }
 
   .prose strong {
-    @apply font-bold text-secondary-900;
+    @apply font-bold text-secondary-900 dark:text-secondary-100;
   }
 }

@@ -34,11 +34,11 @@ const crumbs = [
   <Breadcrumbs crumbs={crumbs} />
 
   <article
-    class="container mx-auto px-4 sm:px-6 lg:px-12 py-16 md:py-24 max-w-4xl bg-white"
+    class="container mx-auto px-4 sm:px-6 lg:px-12 py-16 md:py-24 max-w-4xl bg-white dark:bg-secondary-900"
   >
     <header class="mb-16 text-center">
       <div
-        class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary-50 text-primary-600 mb-8 shadow-sm border border-primary-100"
+        class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary-50 dark:bg-primary-900/50 text-primary-600 dark:text-primary-400 mb-8 shadow-sm border border-primary-100 dark:border-primary-800"
       >
         {
           service.data.icon ? (
@@ -67,7 +67,7 @@ const crumbs = [
         }
       </div>
       <h1
-        class="text-4xl md:text-6xl font-title font-extrabold text-secondary-900 mb-6 tracking-tight"
+        class="text-4xl md:text-6xl font-title font-extrabold text-secondary-900 dark:text-secondary-100 mb-6 tracking-tight"
       >
         {service.data.title}
       </h1>
@@ -84,7 +84,7 @@ const crumbs = [
       <Content />
     </div>
 
-    <div class="mt-20 pt-10 border-t border-secondary-100 text-center">
+    <div class="mt-20 pt-10 border-t border-secondary-100 dark:border-secondary-700 text-center">
       <a
         href="/contact-us"
         class="inline-block bg-primary-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-primary-500 transition-colors shadow-lg shadow-primary-500/30"

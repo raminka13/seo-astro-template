@@ -1,0 +1,114 @@
+---
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  class="p-2 rounded-lg text-secondary-600 hover:text-primary-600 hover:bg-secondary-100 dark:text-secondary-400 dark:hover:text-primary-400 dark:hover:bg-secondary-800 transition-colors focus:outline-none"
+  aria-label="Toggle theme"
+>
+  <!-- Sun icon (shown in dark mode) -->
+  <svg
+    id="theme-icon-light"
+    class="w-5 h-5 hidden"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    stroke-width="2"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+    ></path>
+  </svg>
+  <!-- Moon icon (shown in light mode) -->
+  <svg
+    id="theme-icon-dark"
+    class="w-5 h-5 hidden"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    stroke-width="2"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+    ></path>
+  </svg>
+  <!-- Auto icon (shown in auto mode) -->
+  <svg
+    id="theme-icon-auto"
+    class="w-5 h-5 hidden"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    stroke-width="2"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+    ></path>
+  </svg>
+</button>
+
+<script>
+  function initThemeToggle() {
+    const toggle = document.getElementById('theme-toggle');
+    const iconLight = document.getElementById('theme-icon-light');
+    const iconDark = document.getElementById('theme-icon-dark');
+    const iconAuto = document.getElementById('theme-icon-auto');
+
+    function getThemePreference(): 'light' | 'dark' | 'auto' {
+      return (localStorage.getItem('theme') as 'light' | 'dark' | 'auto') || 'auto';
+    }
+
+    function getEffectiveTheme(pref: 'light' | 'dark' | 'auto'): 'light' | 'dark' {
+      if (pref === 'auto') {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      return pref;
+    }
+
+    function applyTheme(pref: 'light' | 'dark' | 'auto') {
+      const effective = getEffectiveTheme(pref);
+      document.documentElement.classList.toggle('dark', effective === 'dark');
+    }
+
+    function updateIcon(pref: 'light' | 'dark' | 'auto') {
+      iconLight?.classList.toggle('hidden', pref !== 'dark');
+      iconDark?.classList.toggle('hidden', pref !== 'light');
+      iconAuto?.classList.toggle('hidden', pref !== 'auto');
+    }
+
+    function cycleTheme() {
+      const current = getThemePreference();
+      const next = current === 'light' ? 'dark' : current === 'dark' ? 'auto' : 'light';
+      localStorage.setItem('theme', next);
+      applyTheme(next);
+      updateIcon(next);
+      toggle?.setAttribute('aria-label', `Theme: ${next}`);
+    }
+
+    // Initialize
+    const pref = getThemePreference();
+    applyTheme(pref);
+    updateIcon(pref);
+    toggle?.setAttribute('aria-label', `Theme: ${pref}`);
+
+    toggle?.addEventListener('click', cycleTheme);
+
+    // Listen for system theme changes (applies when in auto mode)
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if (getThemePreference() === 'auto') {
+        applyTheme('auto');
+      }
+    });
+  }
+
+  // Run on initial load and on Astro page transitions
+  initThemeToggle();
+  document.addEventListener('astro:after-swap', initThemeToggle);
+</script>
