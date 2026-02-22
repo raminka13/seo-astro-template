@@ -9,7 +9,7 @@ import { SITE_TITLE } from '../consts';
 ---
 
 <header
-  class="sticky top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-secondary-100 transition-all duration-300"
+  class="sticky top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-secondary-200 transition-all duration-300"
   id="main-header"
 >
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -63,6 +63,7 @@ import { SITE_TITLE } from '../consts';
       <div class="flex items-center md:hidden">
         <button
           type="button"
+          id="mobile-menu-btn"
           class="text-secondary-600 hover:text-primary-600 focus:outline-none"
           aria-label="Toggle menu"
         >
@@ -82,4 +83,59 @@ import { SITE_TITLE } from '../consts';
       </div>
     </div>
   </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="fixed hidden top-20 left-0 right-0 pb-12 md:hidden bg-white/95 backdrop-blur-md border-b border-secondary-200 transition-all duration-300"
+  >
+    <div class="px-4 pt-2 pb-6 space-y-1 sm:px-3 flex flex-col items-center">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="block px-3 py-2 text-base font-medium text-secondary-900 hover:text-primary-600 transition-colors w-full text-center rounded-md hover:bg-secondary-50"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <a
+        href="/contact-us"
+        class="block w-full text-center mt-4 bg-primary-600 text-white px-6 py-3 rounded-full font-medium hover:bg-primary-500 transition-colors"
+      >
+        Get Started
+      </a>
+    </div>
+  </div>
 </header>
+
+<script>
+  const header = document.getElementById('main-header');
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  let lastScrollY = window.scrollY;
+
+  // Mobile menu toggle
+  if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!header) return;
+
+    if (window.scrollY > lastScrollY && window.scrollY > header.offsetHeight) {
+      // Scrolling down
+      header.classList.add('-translate-y-full');
+      if (mobileMenu) {
+        mobileMenu.classList.add('hidden');
+      }
+    } else {
+      // Scrolling up
+      header.classList.remove('-translate-y-full');
+    }
+    lastScrollY = window.scrollY;
+  });
+</script>
