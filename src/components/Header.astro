@@ -69,6 +69,8 @@ import ThemeToggle from './ThemeToggle.astro';
           id="mobile-menu-btn"
           class="text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 focus:outline-none"
           aria-label="Toggle menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
         >
           <svg
             class="h-6 w-6"
@@ -122,7 +124,8 @@ import ThemeToggle from './ThemeToggle.astro';
   // Mobile menu toggle
   if (mobileMenuBtn && mobileMenu) {
     mobileMenuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      mobileMenuBtn.setAttribute('aria-expanded', String(!isHidden));
     });
   }
 
@@ -134,6 +137,7 @@ import ThemeToggle from './ThemeToggle.astro';
       header.classList.add('-translate-y-full');
       if (mobileMenu) {
         mobileMenu.classList.add('hidden');
+        mobileMenuBtn?.setAttribute('aria-expanded', 'false');
       }
     } else {
       // Scrolling up

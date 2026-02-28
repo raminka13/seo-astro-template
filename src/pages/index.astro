@@ -64,9 +64,17 @@ const featuresData = [
     link: '/services/web-design',
   },
 ];
+
+const websiteSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": SITE_TITLE,
+  "description": SITE_DESCRIPTION,
+  "url": Astro.site?.href || Astro.url.origin,
+});
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION} schema={websiteSchema}>
   <Hero
     title="Build Faster."
     highlightText="Rank Higher."
