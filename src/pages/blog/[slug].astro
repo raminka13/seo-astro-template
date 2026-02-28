@@ -24,11 +24,25 @@ const crumbs = [
   { label: 'Blog', url: '/blog' },
   { label: entry.data.title, url: `/blog/${entry.slug}` },
 ];
+
+const articleSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": entry.data.title,
+  "description": entry.data.description,
+  "datePublished": entry.data.date.toISOString(),
+  "author": {
+    "@type": "Person",
+    "name": entry.data.author || "AstroSEO Team",
+  },
+  "url": new URL(`/blog/${entry.slug}`, Astro.site || Astro.url).href,
+});
 ---
 
 <BaseLayout
   title={`${entry.data.title} | ${SITE_TITLE}`}
   description={entry.data.description}
+  schema={articleSchema}
 >
   <Breadcrumbs crumbs={crumbs} />
   <article
@@ -62,7 +76,7 @@ const crumbs = [
           <span>{entry.data.author || 'AstroSEO Team'}</span>
         </div>
         <span>&bull;</span>
-        <time>
+        <time datetime={entry.data.date.toISOString().slice(0, 10)}>
           {
             entry.data.date.toLocaleDateString('en-US', {
               year: 'numeric',

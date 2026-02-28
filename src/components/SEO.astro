@@ -13,7 +13,7 @@ const {
   description,
   keywords = "astro, seo, template",
   schema,
-  image = "/default-og.png",
+  image,
   canonicalURL = new URL(Astro.url.pathname, Astro.site || Astro.url).href,
 } = Astro.props;
 ---
@@ -28,14 +28,14 @@ const {
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+{image && <meta property="og:image" content={new URL(image, Astro.url)} />}
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={canonicalURL} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{image && <meta name="twitter:image" content={new URL(image, Astro.url)} />}
 
 {schema && (
   <script type="application/ld+json" set:html={schema} />
